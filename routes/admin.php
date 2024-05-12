@@ -26,9 +26,9 @@ Route::middleware(AuthenticateAdmin::class)
 
             Route::get('/', DashboardController::class)->name('dashboard');
 
-            Route::resource('users', \App\Http\Controllers\Admin\UsersController::class);
+            Route::resource('users', \App\Http\Controllers\Admin\UsersController::class)->only(['index', 'show', 'destroy']);
             Route::resource('products', \App\Http\Controllers\Admin\ProductsController::class);
-            Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class);
+            Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class)->only(['index', 'destroy', 'create', 'store', 'edit', 'update']);
             Route::resource('orders', \App\Http\Controllers\Admin\OrdersController::class);
         }
     );
