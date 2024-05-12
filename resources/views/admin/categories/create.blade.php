@@ -43,7 +43,7 @@
                         <label class="block text-sm font-medium text-gray-700">Description</label>
                         <textarea name="description" placeholder="Description"
                             class="border border-gray-300 rounded p-2 focus:outline-none focus:border-blue-500 w-full resize-none">
-                            {{ trim($category->description) ?? '' }}
+                            {{ $category->description ?? '' }}
                         </textarea>
                     </div>
                     <div class="flex justify-end">
