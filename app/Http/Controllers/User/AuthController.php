@@ -18,7 +18,7 @@ class AuthController extends Controller
 
         $user = User::create($request->only('username', 'email', 'password', 'address', 'phone_number'));
         \Auth::guard('user')->loginUsingId($user->id);
-        return redirect()->to('/home');
+        return redirect()->to('/');
     }
 
     public function login(Request $request)
@@ -36,7 +36,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->to('/home');
+        return redirect()->to('/');
     }
 
     public function logout()
