@@ -8,7 +8,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Middleware\AuthenticateUser;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('user.home');
 });
 

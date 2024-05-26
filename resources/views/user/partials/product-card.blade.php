@@ -4,8 +4,12 @@
     if (!Str::startsWith($image, 'http')) {
         $image = asset('storage/' . $image);
     }
+    if (!auth()->guard('user')->user()) {
+        $isFavorite = false;
+    } else {
+        $isFavorite = auth()->guard('user')->user()->favorites->contains('product_id', $product->id);
+    }
 
-    $isFavorite = auth()->guard('user')->user()->favorites->contains('product_id', $product->id);
 @endphp
 
 <div class="max-w-[300px]">
@@ -22,7 +26,7 @@
                 <div class="flex justify-end">
                     <form action="{{route('favorites.store')}}" method="post">
                         @csrf
-                        <input type="hidden" value="{{$product->id}}" name="product_id">
+                        <input type="hidden" value="{{$product->id ?? null}}" name="product_id">
                         <button type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor"
@@ -35,7 +39,7 @@
                 </div>
                 <form action="{{route('cart.store')}}" method="post">
                     @csrf
-                    <input type="hidden" value="{{$product->id}}" name="product_id">
+                    <input type="hidden" value="{{$product->id ?? null}}" name="product_id">
                     <button type="submit" class="w-full bg-orange-500 text-white p-2 rounded-lg">
                         Add to cart
                     </button>
