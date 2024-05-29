@@ -2,14 +2,13 @@
     $image = $product->image_url;
 
     if (!Str::startsWith($image, 'http')) {
-        $image = asset('storage/' . $image);
+        $image = "data:image/png;base64, $image";
     }
     if (!auth()->guard('user')->user()) {
         $isFavorite = false;
     } else {
         $isFavorite = auth()->guard('user')->user()->favorites->contains('product_id', $product->id);
     }
-
 @endphp
 
 <div class="max-w-[300px]">

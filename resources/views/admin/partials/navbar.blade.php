@@ -1,7 +1,7 @@
 <div class="w-full">
     <nav class="bg-gray-800 w-full">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items justify-between">
+        <div class="mx-auto px-6 py-3 w-full">
+            <div class=" w-full flex items justify-between">
                 <div>
                     <a class="text-white" href="{{ route('admin.dashboard') }}">
                         <h1 class="text-3xl font-bold">Jewelry</h1>

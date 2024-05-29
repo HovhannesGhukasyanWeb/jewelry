@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="container" style="height: calc(100% - 60px);width: 100%">
+    <div style="height: calc(100% - 60px);width: 100%">
         <div>
             @include('admin.partials.navbar')
         </div>
