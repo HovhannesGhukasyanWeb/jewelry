@@ -6,10 +6,17 @@ use App\Http\Controllers\User\FavoritesController;
 use App\Http\Controllers\User\ProductsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Middleware\AuthenticateUser;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('user.home');
+    $products = Product::query()
+        ->orderBy('created_at', 'desc')
+        ->limit(3)
+        ->get();
+    return view('user.home', [
+        'products' => $products
+    ]);
 });
 
 Route::get('/register', function () {
