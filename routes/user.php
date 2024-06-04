@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\FavoritesController;
 use App\Http\Controllers\User\ProductsController;
 use App\Http\Controllers\User\ProfileController;
@@ -37,4 +38,5 @@ Route::middleware(AuthenticateUser::class)
         Route::resource('favorites', FavoritesController::class);
         Route::get('me', [ProfileController::class, 'me']);
         Route::post('/update-profile', [ProfileController::class, 'updateProfile']);
+        Route::post('/checkout', [CheckoutController::class, 'checkout']);
     });

@@ -12,11 +12,6 @@ return [
         'route' => 'admin.users.index',
     ],
     [
-        'title' => 'Orders',
-        'icon' => 'fa-solid fa-cart-shopping',
-        'route' => 'admin.orders.index',
-    ],
-    [
         'title' => 'Categories',
         'icon' => 'fa-solid fa-list',
         'route' => 'admin.categories.index',
