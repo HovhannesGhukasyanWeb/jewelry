@@ -7,7 +7,6 @@
         @forelse ($carts as $item)
                 @php
                     $image = $item->product->image_url;
-
                     if (!Str::startsWith($image, 'http')) {
                         $image = "data:image/png;base64, $image";
                     }
