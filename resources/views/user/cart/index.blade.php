@@ -5,24 +5,30 @@
     <h1 class="text-center text-2xl font-bold my-4">Cart</h1>
     <div>
         @forelse ($carts as $item)
-            <div class="flex justify-between items-center my-2 shadow-lg p-2 rounded-lg">
-                <div>
-                    <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}"
-                        class="w-20 h-20 object-cover">
+                @php
+                    $image = $item->product->image_url;
+
+                    if (!Str::startsWith($image, 'http')) {
+                        $image = "data:image/png;base64, $image";
+                    }
+                 @endphp
+                <div class="flex justify-between items-center my-2 shadow-lg p-2 rounded-lg">
+                    <div>
+                        <img src="{{ $image }}" alt="{{ $item->product->name }}" class="w-20 h-20 object-cover">
+                    </div>
+                    <div>
+                        <h2>{{ $item->product->name }}</h2>
+                        <p>{{ $item->product->price }} x {{$item->quantity}} = {{ $item->product->price * $item->quantity }} AMD
+                        </p>
+                    </div>
+                    <div>
+                        <form action="{{ route('cart.destroy', $item->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-2 py-1">Remove</button>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <h2>{{ $item->product->name }}</h2>
-                    <p>{{ $item->product->price }} x {{$item->quantity}} = {{ $item->product->price * $item->quantity }} AMD
-                    </p>
-                </div>
-                <div>
-                    <form action="{{ route('cart.destroy', $item->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-2 py-1">Remove</button>
-                    </form>
-                </div>
-            </div>
         @empty
             <p class="text-center text-2xl">Cart is empty</p>
         @endforelse
